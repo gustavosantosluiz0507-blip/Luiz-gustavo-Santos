@@ -1,1 +1,1 @@
-CS@
+Counter-Strike
