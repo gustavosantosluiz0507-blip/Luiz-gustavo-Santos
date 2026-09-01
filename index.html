@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Pro eSports | Cobertura Competitiva & Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6000;
+            --primary-hover: #e05300;
+            --bg-main: #0a0b0e;
+            --bg-card: #14161d;
+            --bg-card-light: #1e212b;
+            --text-color: #f1f1f1;
+            --text-muted: #9ea5b5;
+            --border-radius: 16px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --font-base: 'Montserrat', sans-serif;
+            --border-color: #2a2e3d;
+            --win-color: #00c853;
+            --loss-color: #ff1744;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            font-family: var(--font-base);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(16px, 4vw, 32px);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--bg-card);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .accessibility-controls {
+            display: flex;
+            gap: clamp(8px, 2vw, 12px);
+        }
+
+        .accessibility-controls button {
+            background: var(--bg-card-light);
+            color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .accessibility-controls button:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Hero */
+        .hero {
+            padding: clamp(60px, 10vw, 120px) 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 96, 0, 0.1) 0%, rgba(10, 11, 14, 0) 70%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background-color: rgba(255, 96, 0, 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(255, 96, 0, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            margin-bottom: 36px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: clamp(32px, 6vw, 56px);
+            text-transform: uppercase;
+        }
+
+        /* Matches Section */
+        .matches-section {
+            padding: clamp(50px, 8vw, 90px) 0;
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 45vw, 550px), 1fr));
+            gap: clamp(20px, 4vw, 32px);
+            margin-bottom: 48px;
+        }
+
+        .match-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .match-status {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .match-status.upcoming {
+            background-color: rgba(255, 96, 0, 0.2);
+            color: var(--primary-color);
+        }
+
+        .match-status.finished {
+            background-color: rgba(158, 165, 181, 0.2);
+            color: var(--text-muted);
+        }
+
+        .match-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 40%;
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--bg-card-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .team-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .match-score-time {
+            text-align: center;
+            width: 20%;
+        }
+
+        .score {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .match-time {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Players Rating Section */
+        .players-section {
+            padding: clamp(50px, 8vw, 90px) 0;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 22vw, 270px), 1fr));
+            gap: clamp(20px, 3vw, 28px);
+        }
+
+        .player-card {
+            background-color: var(--bg-main);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .player-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            border: 3px solid var(--primary-color);
+            background-color: var(--bg-card-light);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-avatar svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--text-muted);
+        }
+
+        .player-nickname {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .player-realname {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--bg-card-light);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: clamp(50px, 8vw, 90px) 0;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 30vw, 350px), 1fr));
+            gap: clamp(20px, 4vw, 32px);
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 36px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            margin-bottom: 14px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* Testimonials / Carousel */
+        .carousel-section {
+            padding: clamp(50px, 8vw, 90px) 0;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .carousel-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--bg-main);
+            padding: clamp(24px, 5vw, 40px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .carousel-card p {
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .carousel-card h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .carousel-card span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .carousel-nav button {
+            background-color: var(--bg-card-light);
+            color: #fff;
+            border: 1px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .carousel-nav button:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: clamp(50px, 8vw, 90px) 0;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary-color);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-base);
+        }
+
+        .faq-question span {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px 24px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: clamp(60px, 10vw, 110px) 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 96, 0, 0.15) 0%, rgba(10, 11, 14, 0) 75%);
+        }
+
+        .cta-banner h2 {
+            font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .cta-banner p {
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-card);
+            padding: 28px 0;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        /* Blindagem do Modo de Contraste */
+        body.high-contrast, body.high-contrast *:not(i):not(.icon) {
+            background-color: #000 !important;
+            color: #fff !important;
+            border: 1px solid #ff0 !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }body.high-contrast a, body.high-contrast button {
+            color: #ff0 !important;
+            text-decoration: underline !important;
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">CS2<span>PRO</span></div>
+            <div class="accessibility-controls">
+                <button id="btn-decrease-font" aria-label="Diminuir Fonte">A-</button>
+                <button id="btn-increase-font" aria-label="Aumentar Fonte">A+</button>
+                <button id="btn-toggle-contrast" aria-label="Alternar Alto Contraste">Contraste</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="badge">Circuito Profissional CS2</span>
+                    <h1>Alcance a Elite do Counter-Strike 2 Profissional</h1>
+                    <p>Acompanhe partidas do circuito mundial, estatísticas em tempo real, rating de jogadores pro e metodologias de treino utilizadas por equipes Tier 1.</p>
+                    <a href="#planos" class="cta-button">Iniciar Minha Preparação</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="matches-section">
+            <div class="container">
+                <h2 class="section-title">Central de Partidas</h2>
+                <div id="matches-grid" class="matches-grid"></div>
+            </div>
+        </section>
+
+        <section class="players-section">
+            <div class="container">
+                <h2 class="section-title">Destaques do Ranking Mundial (Rating 2.0)</h2>
+                <div id="players-grid" class="players-grid"></div>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <div class="container">
+                <h2 class="section-title">Pilares do Treinamento Pro</h2>
+                <div class="grid-cards">
+                    <div class="card">
+                        <h3>Análise Tática e Metagame</h3>
+                        <p>Domine o meta atual do CS2, execuções sincronizadas, rotações eficientes e retakes otimizados nos mapas do circuito oficial.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Controle de Recoil e Spray</h3>
+                        <p>Aprimore a precisão com a mecânica atualizada do motor Sub-Tick, garantindo firings limpos e tempo de reação reduzido.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Acompanhamento de Desempenho</h3>
+                        <p>Reviews detalhados de partidas (Demos), identificação de vícios operacionais e relatórios focados em constância de performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <div class="container">
+                <h2 class="section-title">Resultados de Atletas</h2>
+                <div class="carousel-container">
+                    <div id="carousel-content" class="carousel-card"></div>
+                    <div class="carousel-nav">
+                        <button id="prev-testimonial" aria-label="Depoimento Anterior">&larr;</button>
+                        <button id="next-testimonial" aria-label="Próximo Depoimento">&rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <div id="faq-accordion" class="accordion"></div>
+            </div>
+        </section>
+
+        <section id="planos" class="cta-banner">
+            <div class="container">
+                <h2>Garanta sua vaga no próximo ciclo competitivo</h2>
+                <p>As turmas de mentoria profissional possuem vagas limitadas para garantir análise individualizada.</p>
+                <a href="#" class="cta-button">Garantir Acesso Agora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CS2 Pro eSports. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Controle de Acessibilidade
+            let currentFontSize = 16;
+            const btnIncrease = document.getElementById('btn-increase-font');
+            const btnDecrease = document.getElementById('btn-decrease-font');
+            const btnContrast = document.getElementById('btn-toggle-contrast');
+
+            btnIncrease.addEventListener('click', () => {
+                let novaFonte = currentFontSize + 2;
+                if (novaFonte >= 12 && novaFonte <= 24) {
+                    currentFontSize = novaFonte;
+                    document.body.style.fontSize = `${currentFontSize}px`;
+                }
+            });
+
+            btnDecrease.addEventListener('click', () => {
+                let novaFonte = currentFontSize - 2;
+                if (novaFonte >= 12 && novaFonte <= 24) {
+                    currentFontSize = novaFonte;
+                    document.body.style.fontSize = `${currentFontSize}px`;
+                }
+            });
+
+            btnContrast.addEventListener('click', () => {
+                document.body.classList.toggle('high-contrast');
+            });
+
+            // 2. Dados de Partidas (Próximas e Recentes)
+            const matches = [
+                {
+                    tournament: "IEM Katowice 2026 - Grande Final",
+                    status: "upcoming",
+                    statusText: "Próximo Jogo",
+                    teamA: "FaZe Clan",
+                    logoA: "FAZE",
+                    teamB: "Natus Vincere",
+                    logoB: "NAVI",
+                    scoreOrTime: "Hoje - 15:00"
+                },
+                {
+                    tournament: "ESL Pro League - Semifinal",
+                    status: "upcoming",
+                    statusText: "Próximo Jogo",
+                    teamA: "FURIA",
+                    logoA: "FUR",
+                    teamB: "Vitality",
+                    logoB: "VIT",
+                    scoreOrTime: "Amanhã - 18:30"
+                },
+                {
+                    tournament: "BLAST Premier Spring - Final",
+                    status: "finished",
+                    statusText: "Encerrado",
+                    teamA: "G2 Esports",
+                    logoA: "G2",
+                    teamB: "Team Liquid",
+                    logoB: "TL",
+                    scoreOrTime: "2 : 1"
+                },
+                {
+                    tournament: "CS2 Major Championship - Quartas",
+                    status: "finished",
+                    statusText: "Encerrado",
+                    teamA: "Astralis",
+                    logoA: "AST",
+                    teamB: "MOUZ",
+                    logoB: "MOUZ",
+                    scoreOrTime: "0 : 2"
+                }
+            ];
+
+            const matchesGrid = document.getElementById('matches-grid');
+            matchesGrid.innerHTML = matches.map(match => `
+                <div class="match-card">
+                    <div class="match-header">
+                        <span>${match.tournament}</span>
+                        <span class="match-status ${match.status}">${match.statusText}</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team">
+                            <div class="team-logo">${match.logoA}</div>
+                            <div class="team-name">${match.teamA}</div>
+                        </div>
+                        <div class="match-score-time">
+                            <div class="${match.status === 'finished' ? 'score' : 'match-time'}">${match.scoreOrTime}</div>
+                        </div>
+                        <div class="team">
+                            <div class="team-logo">${match.logoB}</div>
+                            <div class="team-name">${match.teamB}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 3. Dados de Jogadores e Rating
+            const players = [
+                {
+                    nickname: "s1mple",
+                    realName: "Oleksandr Kostyliev",
+                    team: "Na'Vi",
+                    rating: "1.34",
+                    kd: "1.42"
+                },
+                {
+                    nickname: "ZywOo",
+                    realName: "Mathieu Herbaut",
+                    team: "Vitality",
+                    rating: "1.32",
+                    kd: "1.39"
+                },
+                {
+                    nickname: "m0NESY",
+                    realName: "Ilya Osipov",
+                    team: "G2 Esports",
+                    rating: "1.28",
+                    kd: "1.31"
+                },
+                {
+                    nickname: "KSCERATO",
+                    realName: "Kaike Cerato",
+                    team: "FURIA",
+                    rating: "1.22",
+                    kd: "1.25"
+                }
+            ];
+
+            const playersGrid = document.getElementById('players-grid');
+            playersGrid.innerHTML = players.map(player => `
+                <div class="player-card">
+                    <div class="player-avatar">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <div class="player-nickname">${player.nickname}</div>
+                    <div class="player-realname">${player.realName} | ${player.team}</div>
+                    <div class="player-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">RATING</span>
+                            <span class="stat-value">${player.rating}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">K/D RATIO</span>
+                            <span class="stat-value">${player.kd}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 4. Componente de Carrossel via Array de Objetos
+            const testimonials = [
+                {
+                    text: "A análise tática de Demos transformou nossa equipe. Ajustamos as rotações e garantimos nossa vaga no qualificatório aberto.",
+                    author: "Felipe 'v1per' Castro",
+                    rank: "Capitão / In-Game Leader"
+                },
+                {
+                    text: "O ajuste na rotina de mira e entendimento do sub-tick fez meu rating no Premier subir de 14k para 22k de forma consistente.",
+                    author: "Rodrigo 'K1ng' Neves",
+                    rank: "Entry Fragger"
+                },
+                {
+                    text: "Excelente conteúdo para quem busca profissionalização de verdade. Estrutura impecável do início ao fim.",
+                    author: "Lucas 'phx' Andrade",
+                    rank: "AWPer Competitivo"
+                }
+            ];
+
+            let currentTestimonialIndex = 0;
+            const carouselContent = document.getElementById('carousel-content');
+            const btnPrev = document.getElementById('prev-testimonial');
+            const btnNext = document.getElementById('next-testimonial');
+
+            function renderTestimonial(index) {
+                const item = testimonials[index];
+                carouselContent.innerHTML = `
+                    <p>"${item.text}"</p>
+                    <h4>${item.author}</h4>
+                    <span>${item.rank}</span>
+                `;
+            }
+
+            btnPrev.addEventListener('click', () => {
+                currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+                renderTestimonial(currentTestimonialIndex);
+            });
+
+            btnNext.addEventListener('click', () => {
+                currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+                renderTestimonial(currentTestimonialIndex);
+            });
+
+            renderTestimonial(currentTestimonialIndex);
+
+            // 5. Componente de Acordeão via Array de Objetos
+            const faqs = [
+                {
+                    question: "O programa é voltado apenas para times ou também para jogadores individuais?",
+                    answer: "Atendemos tanto atletas individuais que buscam subir de nível e entrar no cenário competitivo quanto equipes completas que desejam alinhar táticas e comunicação."
+                },
+                {
+                    question: "Como funciona a revisão de partidas (Demos)?",
+                    answer: "Você envia os arquivos das partidas e nossos instrutores realizam uma análise ponto a ponto dos momentos decisivos, erros de posicionamento e oportunidades de jogadas táticas."
+                },
+                {
+                    question: "Quais são os pré-requisitos para ingressar no treinamento?",
+                    answer: "Desejo de evolução técnica, dedicação às rotinas propostas e disponibilidade para aplicar os conceitos táticos nas sessões práticas."
+                }
+            ];
+
+            const accordionContainer = document.getElementById('faq-accordion');
+
+            function renderFAQ() {
+                accordionContainer.innerHTML = faqs.map((faq, index) => `
+                    <div class="faq-item" id="faq-item-${index}">
+                        <button class="faq-question" data-index="${index}">
+                            ${faq.question}
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>${faq.answer}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                const questions = accordionContainer.querySelectorAll('.faq-question');
+                questions.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const item = button.parentElement;
+                        const isActive = item.classList.contains('active');
+                        
+                        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+                        
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            renderFAQ();
+        });
+    </script>
+</body>
+</html>
