@@ -98,7 +98,7 @@
         .hero {
             padding: clamp(60px, 10vw, 120px) 0;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(255, 96, 0, 0.1) 0%, rgba(10, 11, 14, 0) 70%);
+            background: linear-gradient(rgba(10, 11, 14, 0.85), rgba(10, 11, 14, 0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
         }
 
         .hero-content {
@@ -237,6 +237,13 @@
             font-size: 1.2rem;
             color: var(--primary-color);
             border: 2px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .team-name {
@@ -262,12 +269,98 @@
             font-weight: 700;
         }
 
-        /* Players Rating Section */
-        .players-section {
+        /* Interactive Map Simulator */
+        .interactive-section {
             padding: clamp(50px, 8vw, 90px) 0;
             background-color: var(--bg-card);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .map-selector {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .map-btn {
+            background: var(--bg-main);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .map-btn.active, .map-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .map-display {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-main);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            box-shadow: var(--box-shadow);
+        }
+
+        .map-image-container {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .map-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .map-info {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .map-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .map-info p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .map-stats-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .map-stats-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        /* Players Rating Section */
+        .players-section {
+            padding: clamp(50px, 8vw, 90px) 0;
         }
 
         .players-grid {
@@ -277,7 +370,7 @@
         }
 
         .player-card {
-            background-color: var(--bg-main);
+            background-color: var(--bg-card);
             border-radius: var(--border-radius);
             border: 1px solid var(--border-color);
             padding: 24px;
@@ -292,22 +385,19 @@
         }
 
         .player-avatar {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin: 0 auto 16px auto;
             border: 3px solid var(--primary-color);
             background-color: var(--bg-card-light);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .player-avatar svg {
-            width: 50px;
-            height: 50px;
-            fill: var(--text-muted);
+        .player-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .player-nickname {
@@ -325,7 +415,7 @@
         .player-stats {
             display: flex;
             justify-content: space-around;
-            background-color: var(--bg-card-light);
+            background-color: var(--bg-main);
             padding: 12px;
             border-radius: 10px;
             border: 1px solid var(--border-color);
@@ -351,6 +441,9 @@
         /* Benefits */
         .benefits {
             padding: clamp(50px, 8vw, 90px) 0;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .grid-cards {
@@ -360,7 +453,7 @@
         }
 
         .card {
-            background-color: var(--bg-card);
+            background-color: var(--bg-main);
             padding: 36px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
@@ -387,15 +480,12 @@
         /* Testimonials / Carousel */
         .carousel-section {
             padding: clamp(50px, 8vw, 90px) 0;
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .carousel-container {
             max-width: 700px;
             margin: 0 auto;
-            background-color: var(--bg-main);
+            background-color: var(--bg-card);
             padding: clamp(24px, 5vw, 40px);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
@@ -450,6 +540,9 @@
         /* FAQ */
         .faq-section {
             padding: clamp(50px, 8vw, 90px) 0;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .accordion {
@@ -461,7 +554,7 @@
         }
 
         .faq-item {
-            background-color: var(--bg-card);
+            background-color: var(--bg-main);
             border-radius: 12px;
             border: 1px solid var(--border-color);
             overflow: hidden;
@@ -508,7 +601,7 @@
         .cta-banner {
             padding: clamp(60px, 10vw, 110px) 0;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(255, 96, 0, 0.15) 0%, rgba(10, 11, 14, 0) 75%);
+            background: linear-gradient(rgba(10, 11, 14, 0.85), rgba(10, 11, 14, 0.95)), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
         }
 
         .cta-banner h2 {
@@ -577,6 +670,14 @@
             <div class="container">
                 <h2 class="section-title">Central de Partidas</h2>
                 <div id="matches-grid" class="matches-grid"></div>
+            </div>
+        </section>
+
+        <section class="interactive-section">
+            <div class="container">
+                <h2 class="section-title">Análise Interativa de Mapas</h2>
+                <div class="map-selector" id="map-selector"></div>
+                <div class="map-display" id="map-display"></div>
             </div>
         </section>
 
@@ -677,9 +778,9 @@
                     status: "upcoming",
                     statusText: "Próximo Jogo",
                     teamA: "FaZe Clan",
-                    logoA: "FAZE",
+                    logoA: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80",
                     teamB: "Natus Vincere",
-                    logoB: "NAVI",
+                    logoB: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=150&q=80",
                     scoreOrTime: "Hoje - 15:00"
                 },
                 {
@@ -687,9 +788,9 @@
                     status: "upcoming",
                     statusText: "Próximo Jogo",
                     teamA: "FURIA",
-                    logoA: "FUR",
+                    logoA: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80",
                     teamB: "Vitality",
-                    logoB: "VIT",
+                    logoB: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80",
                     scoreOrTime: "Amanhã - 18:30"
                 },
                 {
@@ -697,9 +798,9 @@
                     status: "finished",
                     statusText: "Encerrado",
                     teamA: "G2 Esports",
-                    logoA: "G2",
+                    logoA: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80",
                     teamB: "Team Liquid",
-                    logoB: "TL",
+                    logoB: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=150&q=80",
                     scoreOrTime: "2 : 1"
                 },
                 {
@@ -707,9 +808,9 @@
                     status: "finished",
                     statusText: "Encerrado",
                     teamA: "Astralis",
-                    logoA: "AST",
+                    logoA: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80",
                     teamB: "MOUZ",
-                    logoB: "MOUZ",
+                    logoB: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80",
                     scoreOrTime: "0 : 2"
                 }
             ];
@@ -723,49 +824,119 @@
                     </div>
                     <div class="match-body">
                         <div class="team">
-                            <div class="team-logo">${match.logoA}</div>
+                            <div class="team-logo"><img src="${match.logoA}" alt="${match.teamA}"></div>
                             <div class="team-name">${match.teamA}</div>
                         </div>
                         <div class="match-score-time">
                             <div class="${match.status === 'finished' ? 'score' : 'match-time'}">${match.scoreOrTime}</div>
                         </div>
                         <div class="team">
-                            <div class="team-logo">${match.logoB}</div>
+                            <div class="team-logo"><img src="${match.logoB}" alt="${match.teamB}"></div>
                             <div class="team-name">${match.teamB}</div>
                         </div>
                     </div>
                 </div>
             `).join('');
 
-            // 3. Dados de Jogadores e Rating
+            // 3. Módulo Interativo de Mapas
+            const mapsData = [
+                {
+                    id: "mirage",
+                    name: "Mirage",
+                    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+                    desc: "O mapa mais popular do circuito. Exige controle rigoroso da região da Meia (Mid) e sincronização de utilitárias na A.",
+                    winTR: "48.5%",
+                    winCT: "51.5%",
+                    pickRate: "28%"
+                },
+                {
+                    id: "inferno",
+                    name: "Inferno",
+                    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
+                    desc: "Focado no controle da Banana e retenção de bomb sites em retakes coordenados. Alta dependência de utilitárias.",
+                    winTR: "49.1%",
+                    winCT: "50.9%",
+                    pickRate: "24%"
+                },
+                {
+                    id: "nuke",
+                    name: "Nuke",
+                    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+                    desc: "Layout vertical único. Exige excelente rotação dos CTs no Fora (Outside) e agressões táticas rápidas dos TRs.",
+                    winTR: "45.2%",
+                    winCT: "54.8%",
+                    pickRate: "19%"
+                }
+            ];
+
+            const mapSelector = document.getElementById('map-selector');
+            const mapDisplay = document.getElementById('map-display');
+
+            function renderMap(mapId) {
+                const map = mapsData.find(m => m.id === mapId);
+                mapDisplay.innerHTML = `
+                    <div class="map-image-container">
+                        <img src="${map.image}" alt="${map.name}">
+                    </div>
+                    <div class="map-info">
+                        <h3>${map.name}</h3>
+                        <p>${map.desc}</p>
+                        <ul class="map-stats-list">
+                            <li><span>Vitórias TR:</span> <strong>${map.winTR}</strong></li>
+                            <li><span>Vitórias CT:</span> <strong>${map.winCT}</strong></li>
+                            <li><span>Taxa de Escolha:</span> <strong>${map.pickRate}</strong></li>
+                        </ul>
+                    </div>
+                `;
+
+                document.querySelectorAll('.map-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.map === mapId);
+                });
+            }
+
+            mapSelector.innerHTML = mapsData.map(map => `
+                <button class="map-btn" data-map="${map.id}">${map.name}</button>
+            `).join('');
+
+            mapSelector.querySelectorAll('.map-btn').forEach(btn => {
+                btn.addEventListener('click', () => renderMap(btn.dataset.map));
+            });
+
+            renderMap('mirage');
+
+            // 4. Dados de Jogadores e Rating
             const players = [
                 {
                     nickname: "s1mple",
                     realName: "Oleksandr Kostyliev",
                     team: "Na'Vi",
                     rating: "1.34",
-                    kd: "1.42"
+                    kd: "1.42",
+                    photo: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=300&q=80"
                 },
                 {
                     nickname: "ZywOo",
                     realName: "Mathieu Herbaut",
                     team: "Vitality",
                     rating: "1.32",
-                    kd: "1.39"
+                    kd: "1.39",
+                    photo: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80"
                 },
                 {
                     nickname: "m0NESY",
                     realName: "Ilya Osipov",
                     team: "G2 Esports",
                     rating: "1.28",
-                    kd: "1.31"
+                    kd: "1.31",
+                    photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80"
                 },
                 {
                     nickname: "KSCERATO",
                     realName: "Kaike Cerato",
                     team: "FURIA",
                     rating: "1.22",
-                    kd: "1.25"
+                    kd: "1.25",
+                    photo: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=300&q=80"
                 }
             ];
 
@@ -773,9 +944,7 @@
             playersGrid.innerHTML = players.map(player => `
                 <div class="player-card">
                     <div class="player-avatar">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
+                        <img src="${player.photo}" alt="${player.nickname}">
                     </div>
                     <div class="player-nickname">${player.nickname}</div>
                     <div class="player-realname">${player.realName} | ${player.team}</div>
@@ -792,7 +961,7 @@
                 </div>
             `).join('');
 
-            // 4. Componente de Carrossel via Array de Objetos
+            // 5. Componente de Carrossel via Array de Objetos
             const testimonials = [
                 {
                     text: "A análise tática de Demos transformou nossa equipe. Ajustamos as rotações e garantimos nossa vaga no qualificatório aberto.",
@@ -837,7 +1006,7 @@
 
             renderTestimonial(currentTestimonialIndex);
 
-            // 5. Componente de Acordeão via Array de Objetos
+            // 6. Componente de Acordeão via Array de Objetos
             const faqs = [
                 {
                     question: "O programa é voltado apenas para times ou também para jogadores individuais?",
